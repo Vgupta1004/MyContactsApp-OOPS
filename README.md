@@ -1,12 +1,11 @@
 # MyContactsApp-OOPS
-## UC2-UserAuthentication
+## UC3-User Profile Management
 
 ### Actor
-Registered User
+Logged in user
 
 ### Description
-User logs in with their registered email id to access the contact list
-This is used for user authentication
+User updates profile information, changes password, or manages preferences.
 
 ### Concepts used
-Password hashing with MessageDigest, session management, Optional for handling login results
+User class with setter methods, validation encapsulated in methods
