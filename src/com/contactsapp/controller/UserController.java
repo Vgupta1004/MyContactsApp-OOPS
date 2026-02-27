@@ -61,4 +61,20 @@ public class UserController {
         user.updatePassword(hashPassword(newPass));
         return "Password changed successfully!";
     }
+    
+    public void createContact(User currentUser, String name, String phone, String email, int type) {
+        Contact newContact;
+        if (type == 2) {
+            newContact = new Organization(name); // Inheritance
+        } else {
+            newContact = new Person(name);
+        }
+        
+        newContact.addPhone(phone); // Composition logic
+        newContact.addEmail(email);
+        
+        currentUser.addContact(newContact);
+    }
+    
+    
 }

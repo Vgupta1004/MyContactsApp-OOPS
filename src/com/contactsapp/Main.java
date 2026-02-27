@@ -2,9 +2,10 @@
  * This is the main entry point for the program
  * It check whether the user is registered and does user authentication
  * Then user updates profile information, changes password or manages preferences
+ * Next the user can Create Contacts on his account
  *
  * @author vyapti gupta
- * @version 3.0
+ * @version 4.0
  */
 
 package com.contactsapp;
@@ -51,7 +52,8 @@ public class Main {
             } else {
                 System.out.println("\n--- WELCOME " + sessionUser.getName() + " ---");
                 System.out.println("1. Update Profile");
-                System.out.println("2. Logout");
+                System.out.println("2. Create Contact");
+                System.out.println("3. Logout");
                 System.out.print("Choice: ");
                 String choice = sc.nextLine();
 
@@ -60,7 +62,21 @@ public class Main {
                     System.out.print("New Name: "); String nName = sc.nextLine();
                     System.out.print("New Phone: "); String nPhone = sc.nextLine();
                     System.out.println(userCtrl.updateProfile(sessionUser, nName, nPhone));
-                } else if (choice.equals("2")) {
+                } else if(choice.equals("2")) {
+                	System.out.print("Contact Name: ");
+                    String cName = sc.nextLine();
+                    System.out.print("Phone Number: ");
+                    String cPhone = sc.nextLine();
+                    System.out.print("Email: ");
+                    String cEmail = sc.nextLine();
+                    System.out.print("Type (1: Person, 2: Organization): ");
+                    int cType = Integer.parseInt(sc.nextLine());
+
+                    userCtrl.createContact(sessionUser, cName, cPhone, cEmail, cType);
+                    System.out.println("Contact added to your list!");
+                	
+                	
+                } else if (choice.equals("3")) {
                     sessionUser = null; // Logout
                     System.out.println("Logged out.");
                 }
