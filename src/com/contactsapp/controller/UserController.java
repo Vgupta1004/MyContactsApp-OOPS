@@ -100,5 +100,30 @@ public class UserController {
         }
     }
     
+    // Edit Contact
+    public String editContact(User user, String contactId, String newName, String newPhone, String newEmail) {
+        Optional<Contact> found = user.getMyContacts().stream()
+            .filter(c -> c.getId().equalsIgnoreCase(contactId))
+            .findFirst();
+
+        if (found.isPresent()) {
+            Contact contact = found.get();
+            
+            // Apply updates
+            contact.setName(newName);
+            
+            // Clear and update lists to demonstrate deep update behavior
+            contact.getPhoneNumbers().clear();
+            contact.addPhone(newPhone);
+            
+            contact.getEmails().clear();
+            contact.addEmail(newEmail);
+            
+            return "Contact '" + contactId + "' updated successfully!";
+        } else {
+            return "Error: Contact ID not found.";
+        }
+    }
+    
     
 }

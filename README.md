@@ -1,8 +1,8 @@
 # MyContactsApp-OOPS
-## UC5-User Profile Management
+## UC6-Edit Contact
 ### Actor
 Logged in user
 ### Description
-User views complete information of a specific contact.
+User modifies existing contact information.
 ### Concepts used
-String formatting, Optional for nullable fields, immutable view objects
+Deep copy vs shallow copy, defensive copying, validation before state change
