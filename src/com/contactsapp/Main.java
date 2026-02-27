@@ -53,7 +53,9 @@ public class Main {
                 System.out.println("\n--- WELCOME " + sessionUser.getName() + " ---");
                 System.out.println("1. Update Profile");
                 System.out.println("2. Create Contact");
-                System.out.println("3. Logout");
+                System.out.println("3. List All Contacts");
+                System.out.println("4. View Contact Details");
+                System.out.println("5. Logout");
                 System.out.print("Choice: ");
                 String choice = sc.nextLine();
 
@@ -77,6 +79,13 @@ public class Main {
                 	
                 	
                 } else if (choice.equals("3")) {
+                    userCtrl.listContacts(sessionUser);
+
+                } else if (choice.equals("4")) {
+                    System.out.print("Enter Contact ID to view: ");
+                    String idToView = sc.nextLine();
+                    userCtrl.viewContactDetails(sessionUser, idToView);
+                }else if (choice.equals("5")) {
                     sessionUser = null; // Logout
                     System.out.println("Logged out.");
                 }

@@ -1,8 +1,7 @@
 package com.contactsapp.controller;
 import com.contactsapp.model.*;
 import java.security.MessageDigest;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class UserController {
     private static UserController instance;
@@ -74,6 +73,31 @@ public class UserController {
         newContact.addEmail(email);
         
         currentUser.addContact(newContact);
+    }
+    
+    public void listContacts(User user) {
+        if (user.getMyContacts().isEmpty()) {
+            System.out.println("Your contact list is empty.");
+            return;
+        }
+        System.out.println("\n--- YOUR CONTACTS ---");
+        for (Contact c : user.getMyContacts()) {
+            System.out.println(c.toString()); // Polymorphism in action
+            System.out.println("----------------------");
+        }
+    }
+    
+    public void viewContactDetails(User user, String contactId) {
+        Optional<Contact> found = user.getMyContacts().stream()
+            .filter(c -> c.getId().equalsIgnoreCase(contactId))
+            .findFirst();
+
+        if (found.isPresent()) {
+            System.out.println("\n--- CONTACT DETAILS ---");
+            System.out.println(found.get());
+        } else {
+            System.out.println("Error: Contact with ID " + contactId + " not found.");
+        }
     }
     
     
