@@ -125,5 +125,19 @@ public class UserController {
         }
     }
     
+    public boolean deleteContact(User user, String contactId) {
+        // Lifecycle management: Removing the object from the managed list
+        // Returns true if an element was removed
+        boolean removed = user.getMyContacts().removeIf(
+            c -> c.getId().equalsIgnoreCase(contactId)
+        );
+        
+        if (removed) {
+            // In a full implementation, you'd trigger the Observer Pattern here
+            return true;
+        }
+        return false;
+    }
+    
     
 }
