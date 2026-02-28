@@ -1,8 +1,8 @@
 # MyContactsApp-OOPS
-## UC6-Edit Contact
+## UC7-Delete Contact
 ### Actor
 Logged in user
 ### Description
-User modifies existing contact information.
+User removes a contact from their list with confirmation.
 ### Concepts used
-Deep copy vs shallow copy, defensive copying, validation before state change
+Lifecycle management, cascade delete for related entities
