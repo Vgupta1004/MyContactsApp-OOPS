@@ -1,8 +1,8 @@
 # MyContactsApp-OOPS
-## UC7-Delete Contact
+## UC8-Bulk Operations
 ### Actor
 Logged in user
 ### Description
-User removes a contact from their list with confirmation.
+User performs operations on multiple contacts (delete, tag, export).
 ### Concepts used
-Lifecycle management, cascade delete for related entities
+Streams API, lambda expressions, method references, batch processing

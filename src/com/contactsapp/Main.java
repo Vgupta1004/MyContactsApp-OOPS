@@ -5,9 +5,10 @@
  * Next the user can Create Contacts on his account
  * The user can view the list of contacts and even edit the contact
  * The user can delete a contact by entering the contact id
+ * The user can bulk delete multiple contacts
  *
  * @author vyapti gupta
- * @version 7.0
+ * @version 8.0
  */
 
 package com.contactsapp;
@@ -59,7 +60,8 @@ public class Main {
                 System.out.println("4. View Contact Details");
                 System.out.println("5. Edit Contact");
                 System.out.println("6. Delete Contact");
-                System.out.println("7. Logout");
+                System.out.println("7. Bulk Delete by Name");
+                System.out.println("8. Logout");
                 System.out.print("Choice: ");
                 String choice = sc.nextLine();
 
@@ -120,8 +122,30 @@ public class Main {
                     } else {
                         System.out.println("Deletion cancelled.");
                     }
+                }else if (choice.equals("7")) {
+                    java.util.List<String> targetNames = new java.util.ArrayList<>(); // List collection
+                    
+                    System.out.println("Enter names to delete (type 'done' to finish):");
+                    while (true) {
+                        System.out.print("> ");
+                        String nameInput = sc.nextLine();
+                        if (nameInput.equalsIgnoreCase("done")) break;
+                        if (!nameInput.trim().isEmpty()) {
+                            targetNames.add(nameInput);
+                        }
+                    }
+
+                    if (!targetNames.isEmpty()) {
+                        System.out.print("Are you sure you want to delete these " + targetNames.size() + " names? (y/n): ");
+                        if (sc.nextLine().equalsIgnoreCase("y")) {
+                            int deleted = userCtrl.bulkDeleteByNames(sessionUser, targetNames);
+                            System.out.println("SUCCESS: " + deleted + " contacts removed from your list.");
+                        }
+                    } else {
+                        System.out.println("No names entered.");
+                    }
                 }
-                else if (choice.equals("7")) {
+                else if (choice.equals("8")) {
                     sessionUser = null; // Logout
                     System.out.println("Logged out.");
                 }

@@ -2,6 +2,7 @@ package com.contactsapp.controller;
 import com.contactsapp.model.*;
 import java.security.MessageDigest;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserController {
     private static UserController instance;
@@ -139,5 +140,26 @@ public class UserController {
         return false;
     }
     
+    /**
+     * UC-08: Bulk Delete by Name List
+     * Iterates through the user's contacts and removes any that match the provided names.
+     */
+    public int bulkDeleteByNames(User user, List<String> namesToDelete) {
+        int count = 0;
+        Iterator<Contact> it = user.getMyContacts().iterator(); // Iterating through objects
+
+        while (it.hasNext()) {
+            Contact contact = it.next();
+            // Check if current contact name is in our "target" list
+            for (String targetName : namesToDelete) {
+                if (contact.getName().equalsIgnoreCase(targetName.trim())) {
+                    it.remove(); // Basic object manipulation (removal)
+                    count++;
+                    break; // Move to next contact once deleted
+                }
+            }
+        }
+        return count;
+    }
     
 }
