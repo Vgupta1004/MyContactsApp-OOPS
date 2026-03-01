@@ -6,6 +6,7 @@
  * The user can view the list of contacts and even edit the contact
  * The user can delete a contact by entering the contact id
  * The user can bulk delete multiple contacts
+ * User also has an option to search up contacts
  *
  * @author vyapti gupta
  * @version 8.0
@@ -16,8 +17,8 @@ package com.contactsapp;
 import com.contactsapp.controller.UserController;
 import com.contactsapp.model.User;
 import com.contactsapp.model.UserType;
-import com.contactsapp.service.Authenticator;
-import com.contactsapp.service.BasicAuthenticator;
+import com.contactsapp.service.*;
+
 import java.util.Scanner;
 
 public class Main {
@@ -61,7 +62,8 @@ public class Main {
                 System.out.println("5. Edit Contact");
                 System.out.println("6. Delete Contact");
                 System.out.println("7. Bulk Delete by Name");
-                System.out.println("8. Logout");
+                System.out.println("8. Search Contacts");
+                System.out.println("9. Logout");
                 System.out.print("Choice: ");
                 String choice = sc.nextLine();
 
@@ -144,8 +146,16 @@ public class Main {
                     } else {
                         System.out.println("No names entered.");
                     }
+                } else if (choice.equals("8")) {
+                    System.out.println("Search by: 1. Name | 2. Phone");
+                    String type = sc.nextLine();
+                    System.out.print("Enter search term: ");
+                    String query = sc.nextLine();
+
+                    SearchCriteria criteria = type.equals("2") ? new PhoneSearch() : new NameSearch();
+                    userCtrl.performSearch(sessionUser, criteria, query);
                 }
-                else if (choice.equals("8")) {
+                else if (choice.equals("9")) {
                     sessionUser = null; // Logout
                     System.out.println("Logged out.");
                 }

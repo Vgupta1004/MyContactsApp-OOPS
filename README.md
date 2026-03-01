@@ -1,8 +1,8 @@
 # MyContactsApp-OOPS
-## UC8-Bulk Operations
+## UC9-Search COntacts
 ### Actor
 Logged in user
 ### Description
-User performs operations on multiple contacts (delete, tag, export).
+User searches contacts by name, phone, email, or tags.
 ### Concepts used
-Streams API, lambda expressions, method references, batch processing
+Predicate interface, Stream filtering, regex pattern matching, case-insensitive comparison

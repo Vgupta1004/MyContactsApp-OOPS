@@ -1,5 +1,7 @@
 package com.contactsapp.controller;
 import com.contactsapp.model.*;
+import com.contactsapp.service.SearchCriteria;
+
 import java.security.MessageDigest;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -160,6 +162,18 @@ public class UserController {
             }
         }
         return count;
+    }
+    
+    public void performSearch(User user, SearchCriteria criteria, String query) {
+        List<Contact> results = criteria.search(user.getMyContacts(), query);
+        if (results.isEmpty()) {
+            System.out.println("No contacts found matching: " + query);
+        } else {
+            System.out.println("--- Search Results ---");
+            for (Contact c : results) {
+                System.out.println(c);
+            }
+        }
     }
     
 }
