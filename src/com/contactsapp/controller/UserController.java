@@ -1,5 +1,6 @@
 package com.contactsapp.controller;
 import com.contactsapp.model.*;
+import com.contactsapp.service.ContactFilter;
 import com.contactsapp.service.SearchCriteria;
 
 import java.security.MessageDigest;
@@ -174,6 +175,20 @@ public class UserController {
                 System.out.println(c);
             }
         }
+    }
+    
+    public void filterContacts(User user, ContactFilter filter) {
+        if (user.getMyContacts().isEmpty()) {
+            System.out.println("No contacts to filter.");
+            return;
+        }
+        
+        // Apply the chosen filter logic
+        filter.applyFilter(user.getMyContacts());
+        System.out.println("Filter applied successfully.");
+        
+        // Display the newly sorted list
+        listContacts(user); 
     }
     
 }

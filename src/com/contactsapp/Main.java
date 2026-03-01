@@ -9,7 +9,7 @@
  * User also has an option to search up contacts
  *
  * @author vyapti gupta
- * @version 8.0
+ * @version 10.0
  */
 
 package com.contactsapp;
@@ -63,7 +63,8 @@ public class Main {
                 System.out.println("6. Delete Contact");
                 System.out.println("7. Bulk Delete by Name");
                 System.out.println("8. Search Contacts");
-                System.out.println("9. Logout");
+                System.out.println("9. Filter/Sort Contacts");
+                System.out.println("10. Logout");
                 System.out.print("Choice: ");
                 String choice = sc.nextLine();
 
@@ -154,8 +155,20 @@ public class Main {
 
                     SearchCriteria criteria = type.equals("2") ? new PhoneSearch() : new NameSearch();
                     userCtrl.performSearch(sessionUser, criteria, query);
+                } else if (choice.equals("9")) {
+                    System.out.println("Sort by: 1. Name (A-Z) | 2. Creation Order");
+                    String sortChoice = sc.nextLine();
+                    
+                    ContactFilter filter;
+                    if (sortChoice.equals("1")) {
+                        filter = new NameSortFilter();
+                    } else {
+                        filter = new DateSortFilter();
+                    }
+                    
+                    userCtrl.filterContacts(sessionUser, filter); // Loops with conditions
                 }
-                else if (choice.equals("9")) {
+                else if (choice.equals("10")) {
                     sessionUser = null; // Logout
                     System.out.println("Logged out.");
                 }

@@ -1,8 +1,8 @@
 # MyContactsApp-OOPS
-## UC9-Search COntacts
+## UC10-Advanced Filtering
 ### Actor
 Logged in user
 ### Description
-User searches contacts by name, phone, email, or tags.
+User applies multiple filters (by tag, date added, frequently contacted)..
 ### Concepts used
-Predicate interface, Stream filtering, regex pattern matching, case-insensitive comparison
+Comparator for sorting, multi-level filtering with streams, functional interfaces
