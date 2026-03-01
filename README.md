@@ -1,8 +1,8 @@
 # MyContactsApp-OOPS
-## UC11 - Create and Manage Tags
+## UC12 - Apply Tags to Contacts
 ### Actor
 Logged in user
 ### Description
-User creates custom tags (Family, Work, Friends) for organizing contacts.
+User assigns one or multiple tags to contacts.
 ### Concepts used
-Set for storing unique tags Overriding equals() and hashCode()
+add() and remove() methods in collections Basic collection handling using loops

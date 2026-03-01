@@ -8,6 +8,7 @@ public abstract class Contact {
     private List<String> phoneNumbers = new ArrayList<>();
     private List<String> emails = new ArrayList<>();
     private Set<Tag> tags = new HashSet<>(); // Java Concept: Set for unique tags
+    
 
     public Contact(String name) {
         this.id = UUID.randomUUID().toString().substring(0, 8); // Shortened for display
@@ -25,13 +26,22 @@ public abstract class Contact {
 
     public abstract String getContactType();
 
-    // UC-05: toString() override for display formatting
+//    // UC-05: toString() override for display formatting
+//    @Override
+//    public String toString() {
+//        return String.format(
+//            "ID: %s | Type: %s | Name: %s\nPhones: %s\nEmails: %s",
+//            id, getContactType(), name, phoneNumbers, emails
+//        ); // Java Concept: String formatting
+//    }
+    
+    // Updated toString to view tags
     @Override
     public String toString() {
         return String.format(
-            "ID: %s | Type: %s | Name: %s\nPhones: %s\nEmails: %s",
-            id, getContactType(), name, phoneNumbers, emails
-        ); // Java Concept: String formatting
+            "ID: %s | Name: %s | Tags: %s\nPhones: %s\nEmails: %s",
+            getId(), getName(), tags, getPhoneNumbers(), getEmails()
+        );
     }
     
  // UC-06: Setters with Validation
@@ -54,11 +64,23 @@ public abstract class Contact {
         }
     }
     
-    public Set<Tag> getTags() {
-        return tags;
+    
+    // UC-12: Adding and removing tags
+    public void addTag(Tag tag) {
+        this.tags.add(tag); // Java Concept: add()
     }
 
-    public void addTag(Tag tag) {
-        this.tags.add(tag); // Automatically handles uniqueness via hashCode/equals
+    public void removeTag(String tagName) {
+        // Basic collection handling using loops
+        Iterator<Tag> it = tags.iterator();
+        while (it.hasNext()) {
+            if (it.next().getTagName().equalsIgnoreCase(tagName.trim())) {
+                it.remove(); // Java Concept: remove()
+            }
+        }
     }
+
+    public Set<Tag> getTags() { return tags; }
+
+    
 }
