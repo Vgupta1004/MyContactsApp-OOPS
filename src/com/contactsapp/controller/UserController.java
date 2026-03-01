@@ -191,4 +191,17 @@ public class UserController {
         listContacts(user); 
     }
     
+    public String addTagToContact(User user, String contactId, String tagName) {
+        Optional<Contact> found = user.getMyContacts().stream()
+            .filter(c -> c.getId().equalsIgnoreCase(contactId))
+            .findFirst();
+
+        if (found.isPresent()) {
+            Tag newTag = new Tag(tagName);
+            found.get().addTag(newTag); // Relationship between Contact and Tag
+            return "Tag '" + tagName + "' added to " + found.get().getName();
+        }
+        return "Error: Contact not found.";
+    }
+    
 }

@@ -1,14 +1,13 @@
 package com.contactsapp.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class Contact {
     private String id;
     private String name;
     private List<String> phoneNumbers = new ArrayList<>();
     private List<String> emails = new ArrayList<>();
+    private Set<Tag> tags = new HashSet<>(); // Java Concept: Set for unique tags
 
     public Contact(String name) {
         this.id = UUID.randomUUID().toString().substring(0, 8); // Shortened for display
@@ -53,5 +52,13 @@ public abstract class Contact {
         if (emails != null && !emails.isEmpty()) {
             this.emails = new ArrayList<>(emails); // Defensive copying
         }
+    }
+    
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag); // Automatically handles uniqueness via hashCode/equals
     }
 }

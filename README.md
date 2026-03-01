@@ -1,8 +1,8 @@
 # MyContactsApp-OOPS
-## UC10-Advanced Filtering
+## UC11 - Create and Manage Tags
 ### Actor
 Logged in user
 ### Description
-User applies multiple filters (by tag, date added, frequently contacted)..
+User creates custom tags (Family, Work, Friends) for organizing contacts.
 ### Concepts used
-Comparator for sorting, multi-level filtering with streams, functional interfaces
+Set for storing unique tags Overriding equals() and hashCode()
